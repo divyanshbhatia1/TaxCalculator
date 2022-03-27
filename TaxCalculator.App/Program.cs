@@ -13,7 +13,7 @@ public class Program
             {
                 var slabs = o.IsOldRegime ? TaxSlabs.OldRegimeSlabs : TaxSlabs.NewRegimeSlabs;
 
-                ITaxCalculator taxCalculator = new TaxCalculator(slabs);
+                ITaxCalculator taxCalculator = new Calculator.TaxCalculator(slabs);
 
                 var tax = taxCalculator.CalculateIncomeTax(o.Amount);
 
