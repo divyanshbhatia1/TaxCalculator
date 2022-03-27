@@ -1,23 +1,16 @@
 ﻿using CommandLine;
+using TaxCalculator.App;
 using TaxCalculator.App.Calculator;
 using TaxCalculator.App.Data;
 
-namespace TaxCalculator.App;
+Parser.Default.ParseArguments<Options>(args)
+           .WithParsed(o =>
+           {
+               var slabs = o.IsOldRegime ? TaxSlabs.OldRegimeSlabs : TaxSlabs.NewRegimeSlabs;
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        Parser.Default.ParseArguments<Options>(args)
-            .WithParsed(o =>
-            {
-                var slabs = o.IsOldRegime ? TaxSlabs.OldRegimeSlabs : TaxSlabs.NewRegimeSlabs;
+               IIncomeTaxCalculator taxCalculator = new IncomeTaxCalculator(slabs);
 
-                ITaxCalculator taxCalculator = new Calculator.TaxCalculator(slabs);
+               var tax = taxCalculator.CalculateIncomeTax(o.Amount);
 
-                var tax = taxCalculator.CalculateIncomeTax(o.Amount);
-
-                Console.WriteLine($"Income Tax: {tax}");
-            });
-    }
-}
+               Console.WriteLine($"Income Tax: {tax}");
+           });

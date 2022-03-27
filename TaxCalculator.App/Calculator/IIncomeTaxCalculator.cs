@@ -1,6 +1,6 @@
 ﻿namespace TaxCalculator.App.Calculator;
 
-public interface ITaxCalculator
+public interface IIncomeTaxCalculator
 {
     decimal CalculateIncomeTax(decimal income);
 }

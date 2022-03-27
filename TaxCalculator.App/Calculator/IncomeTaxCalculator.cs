@@ -2,10 +2,10 @@
 
 namespace TaxCalculator.App.Calculator;
 
-public class TaxCalculator : ITaxCalculator
+public class IncomeTaxCalculator : IIncomeTaxCalculator
 {
     private readonly List<TaxSlab> _taxSlabs;
-    public TaxCalculator(List<TaxSlab> taxSlabs)
+    public IncomeTaxCalculator(List<TaxSlab> taxSlabs)
     {
         _taxSlabs = taxSlabs;
     }
